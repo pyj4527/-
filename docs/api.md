@@ -65,37 +65,6 @@ SEON-YUL MVP API는 서울 관광지 기반 음악 공유 서비스를 중심으
 
 ---
 
-## 지도 관광지 검색
-
-`GET /map/places/search`
-
-### Query
-
-| 이름      | 타입     | 설명         |
-| ------- | ------ | ---------- |
-| keyword | String | 관광지 검색 키워드 |
-
-### 응답
-
-```json
-[
-  {
-    "id": 1,
-    "name": "경복궁",
-    "district": "종로구",
-    "imageUrl": "https://cdn.example.com/places/gyeongbokgung.jpg"
-  }
-]
-```
-
-### 검색 기준
-
-* 관광지 이름
-* 지역명
-* 태그
-
----
-
 # 관광지
 
 ## 관광지 상세 조회
@@ -203,7 +172,7 @@ Content-Type: `multipart/form-data`
 
 ---
 
-## 관광지 음악 수정
+## 관광지 음악 설명 수정
 
 `PUT /places/{placeId}/tracks/{trackId}`
 
@@ -260,7 +229,7 @@ Content-Type: `multipart/form-data`
 ```json
 {
   "placeId": 1,
-  "createdAt": "2026-05-27T12:00:00"
+  "isBookmarked": true
 }
 ```
 
@@ -318,7 +287,12 @@ Content-Type: `multipart/form-data`
 
 ### 응답
 
-`204 No Content`
+```json
+{
+  "placeId": 1,
+  "isBookmarked": false
+}
+```
 
 ---
 
@@ -349,4 +323,3 @@ Content-Type: `multipart/form-data`
 | `FILE_TOO_LARGE`       | 파일 크기 초과      |
 
 ---
-
