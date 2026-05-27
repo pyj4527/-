@@ -15,20 +15,32 @@ SEON-YUL MVP API는 서울 관광지 기반 음악 공유 서비스를 중심으
 
 * Base URL: `/api`
 * 아래 endpoint path는 Base URL 이후 경로만 표기한다.
+* MVP에서는 로그인/회원가입 기능을 구현하지 않는다.
 * MVP 인증은 임시로 `X-User-Id` 헤더를 사용한다.
-* 사용자 관련 API 요청은 `X-User-Id: {userId}`를 포함해야 한다.
+* 프론트는 모든 요청 헤더에 `X-User-Id: 1`을 포함한다.
+* 서버는 기본 사용자(id=1)를 초기 데이터로 생성한다.
 * `X-User-Id`가 없거나 유효하지 않으면 `401 Unauthorized`를 반환한다.
 * 날짜 및 시간은 ISO-8601 형식을 사용한다.
 * 관광지는 DB `places` 테이블에서 관리한다.
 * MVP에서는 관광지 3개를 초기 데이터로 저장한다.
 
-## 초기 관광지 데이터
+---
+
+# 공통 요청 헤더 예시
+
+```http
+X-User-Id: 1
+```
+
+---
+
+# 초기 관광지 데이터
 
 | id | name | district |
 | -- | ---- | -------- |
-| 1  | 경복궁  | 종로구      |
-| 2  | 남산타워 | 용산구      |
-| 3  | 청계천  | 종로구      |
+| 1 | 경복궁 | 종로구 |
+| 2 | 남산타워 | 용산구 |
+| 3 | 청계천 | 종로구 |
 
 ---
 
@@ -39,6 +51,12 @@ SEON-YUL MVP API는 서울 관광지 기반 음악 공유 서비스를 중심으
 `GET /map/places`
 
 지도 화면에 표시할 관광지 데이터를 조회한다.
+
+### 헤더
+
+```http
+X-User-Id: 1
+```
 
 ### 응답
 
@@ -72,6 +90,12 @@ SEON-YUL MVP API는 서울 관광지 기반 음악 공유 서비스를 중심으
 `GET /places/{placeId}`
 
 관광지 상세 화면 데이터를 조회한다.
+
+### 헤더
+
+```http
+X-User-Id: 1
+```
 
 ### 응답
 
@@ -110,12 +134,18 @@ Content-Type: `multipart/form-data`
 
 관광지에 음악과 설명을 업로드한다.
 
+### 헤더
+
+```http
+X-User-Id: 1
+```
+
 ### 필드
 
-| 필드          | 타입     | 필수  | 설명    |
-| ----------- | ------ | --- | ----- |
-| audio       | File   | 예   | 음악 파일 |
-| title       | String | 예   | 음악 제목 |
+| 필드 | 타입 | 필수 | 설명 |
+| -- | -- | -- | -- |
+| audio | File | 예 | 음악 파일 |
+| title | String | 예 | 음악 제목 |
 | description | String | 아니오 | 음악 설명 |
 
 ### 응답
@@ -147,6 +177,12 @@ Content-Type: `multipart/form-data`
 
 `GET /places/{placeId}/tracks`
 
+### 헤더
+
+```http
+X-User-Id: 1
+```
+
 ### 응답
 
 ```json
@@ -159,7 +195,7 @@ Content-Type: `multipart/form-data`
     "createdAt": "2026-05-27T12:00:00",
     "createdBy": {
       "userId": 1,
-      "nickname": "kodong"
+      "nickname": "guest"
     },
     "isMine": true
   }
@@ -175,6 +211,14 @@ Content-Type: `multipart/form-data`
 ## 관광지 음악 설명 수정
 
 `PUT /places/{placeId}/tracks/{trackId}`
+
+업로드한 음악 제목 및 설명을 수정한다.
+
+### 헤더
+
+```http
+X-User-Id: 1
+```
 
 ### 요청
 
@@ -206,6 +250,14 @@ Content-Type: `multipart/form-data`
 
 `DELETE /places/{placeId}/tracks/{trackId}`
 
+업로드한 음악을 삭제한다.
+
+### 헤더
+
+```http
+X-User-Id: 1
+```
+
 ### 응답
 
 `204 No Content`
@@ -223,6 +275,12 @@ Content-Type: `multipart/form-data`
 `POST /places/{placeId}/bookmarks`
 
 관광지를 저장한다.
+
+### 헤더
+
+```http
+X-User-Id: 1
+```
 
 ### 응답
 
@@ -246,10 +304,16 @@ Content-Type: `multipart/form-data`
 
 저장 페이지에서 북마크한 관광지 목록을 조회한다.
 
+### 헤더
+
+```http
+X-User-Id: 1
+```
+
 ### Query
 
-| 이름       | 타입     | 설명                   |
-| -------- | ------ | -------------------- |
+| 이름 | 타입 | 설명 |
+| -- | -- | -- |
 | district | String | 지역 필터 (`종로구`, `용산구`) |
 
 ### 응답
@@ -285,6 +349,12 @@ Content-Type: `multipart/form-data`
 
 관광지 저장을 해제한다.
 
+### 헤더
+
+```http
+X-User-Id: 1
+```
+
 ### 응답
 
 ```json
@@ -298,7 +368,7 @@ Content-Type: `multipart/form-data`
 
 # 공통 에러 응답
 
-### 응답 예시
+## 응답 예시
 
 ```json
 {
@@ -310,16 +380,18 @@ Content-Type: `multipart/form-data`
 }
 ```
 
-## 에러 코드 예시
+---
 
-| 코드                     | 설명            |
-| ---------------------- | ------------- |
-| `UNAUTHORIZED`         | 인증 실패         |
-| `PLACE_NOT_FOUND`      | 관광지 없음        |
-| `TRACK_NOT_FOUND`      | 음악 데이터 없음     |
-| `FORBIDDEN`            | 권한 없음         |
-| `DUPLICATE_BOOKMARK`   | 중복 저장         |
+# 에러 코드 예시
+
+| 코드 | 설명 |
+| -- | -- |
+| `UNAUTHORIZED` | 인증 실패 |
+| `PLACE_NOT_FOUND` | 관광지 없음 |
+| `TRACK_NOT_FOUND` | 음악 데이터 없음 |
+| `FORBIDDEN` | 권한 없음 |
+| `DUPLICATE_BOOKMARK` | 중복 저장 |
 | `INVALID_AUDIO_FORMAT` | 지원하지 않는 파일 형식 |
-| `FILE_TOO_LARGE`       | 파일 크기 초과      |
+| `FILE_TOO_LARGE` | 파일 크기 초과 |
 
 ---
