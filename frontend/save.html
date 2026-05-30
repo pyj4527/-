@@ -1,0 +1,53 @@
+﻿<!DOCTYPE html>
+<html lang="ko">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>SEON-YUL Save</title>
+    <link rel="stylesheet" href="css/save.css">
+    <script defer src="js/data.js"></script>
+    <script defer src="js/api.js"></script>
+    <script defer src="js/save.js"></script>
+</head>
+<body>
+    <main class="phone-screen" aria-label="저장한 장소">
+        <header class="status-bar" aria-label="상태 표시줄">
+            <span></span>
+        </header>
+
+        <section class="save-header">
+            <h1>저장</h1>
+            <div class="filter-tabs" aria-label="저장 장소 필터">
+                <button class="active" type="button">전체</button>
+                <button type="button">종로구</button>
+                <button type="button">용산구</button>
+            </div>
+        </section>
+
+        <section class="saved-list" aria-label="저장 목록" id="savedList"></section>
+
+        <nav class="bottom-nav" aria-label="하단 메뉴">
+            <a href="main/main.html">
+                <span class="nav-icon" aria-hidden="true"><img src="images/icon/Home.png" alt=""></span>
+                홈
+            </a>
+            <a href="map/map.html">
+                <span class="nav-icon" aria-hidden="true"><img src="images/icon/Group 241.png" alt=""></span>
+                지도
+            </a>
+            <a class="center-action" href="player.html" aria-label="SEON-YUL 플레이어">
+                <img src="images/icon/Frame 2117904858.png" alt="">
+                SEON-YUL
+            </a>
+            <a class="active" href="save.html">
+                <span class="nav-icon" aria-hidden="true"><img src="images/icon/Bookmark1.png" alt=""></span>
+                저장
+            </a>
+            <a href="#">
+                <span class="nav-icon" aria-hidden="true"><img src="images/icon/User.png" alt=""></span>
+                마이
+            </a>
+        </nav>
+    </main>
+</body>
+</html>

@@ -1,0 +1,91 @@
+﻿<!doctype html>
+<html lang="ko">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>SEON-YUL Player</title>
+    <link rel="stylesheet" href="css/player.css" />
+  </head>
+  <body>
+    <main class="page">
+      <section class="music-box">
+        <img
+          id="musicImage"
+          src="images/spots/image 13.png"
+          alt="장소 이미지"
+        />
+
+        <div class="music-overlay">
+          <div class="icon-row">
+            <button id="backButton" class="icon-button" type="button" aria-label="뒤로가기">
+              <img class="icon-img" src="images/icon/Left 2.png" alt="" />
+            </button>
+            <div class="menu-icons">
+              <button id="bookmarkButton" class="icon-button" type="button" aria-label="저장">
+                <img class="icon-img" src="images/icon/Bookmark.png" alt="" />
+              </button>
+              <button class="icon-button" type="button" aria-label="공유">
+                <img class="icon-img" src="images/icon/Share.png" alt="" />
+              </button>
+            </div>
+          </div>
+
+          <div class="music-text">
+            <h2 id="musicTitle">SEON-YUL</h2>
+            <span id="musicSub">Recommended Track</span>
+          </div>
+
+          <button id="playButton" class="play-button" type="button" aria-label="재생">=</button>
+          <div class="progress-bar"><span></span></div>
+        </div>
+
+        <audio id="audio" src=""></audio>
+      </section>
+
+      <section class="place-box">
+        <p class="place-label">Place in <b>SEON-YUL</b></p>
+
+        <h1>
+          <span id="placeName">Place</span>
+          <span id="placeEnglish">SEON-YUL</span>
+        </h1>
+
+        <div class="tag-box" id="tagBox">
+          <span>SEON-YUL</span>
+        </div>
+
+        <p id="placeDesc" class="desc">
+          장소 정보를 불러오는 중입니다.
+        </p>
+      </section>
+
+      <section class="photo-box">
+        <img id="placeImage" src="images/spots/image 7.png" alt="장소 사진" />
+        <button class="next-photo" type="button" aria-label="다음 사진">›</button>
+        <div class="dots" aria-hidden="true">
+          <span class="active"></span>
+          <span></span>
+          <span></span>
+        </div>
+      </section>
+
+      <section class="info-box">
+        <p><span><img src="images/icon/Coupon 3.png" alt="" />입장료</span><b id="fee">-</b></p>
+        <p><span><img src="images/icon/Alarm clock.png" alt="" />운영시간</span><b id="time">-</b></p>
+        <p><span><img src="images/icon/Location.png" alt="" />위치</span><b id="location">-</b></p>
+      </section>
+
+      <section class="my-seonyul-box" aria-label="내 SEON-YUL 노래">
+        <h2>MY SEON-YUL</h2>
+        <div id="mySeonyulSong" class="my-song-field">파일을 올려주세요</div>
+        <a href="#" class="other-seonyul-link">다른 사람의 SEON-YUL 확인하기 <span aria-hidden="true">›</span></a>
+      </section>
+
+      <button id="addSongButton" class="add-button" type="button"><img src="images/icon/Flag.png" alt="" />노래 추가하기</button>
+    </main>
+
+    <script src="js/data.js"></script>
+    <script src="js/api.js"></script>
+    <script src="js/player.js"></script>
+  </body>
+</html>

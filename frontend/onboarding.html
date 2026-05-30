@@ -1,0 +1,79 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>SEON-YUL Onboarding</title>
+  <link rel="stylesheet" href="onboarding.css">
+</head>
+<body>
+  <main class="app-container" aria-label="SEON-YUL 온보딩">
+    <section class="intro">
+      <div class="logo-mark" aria-hidden="true">
+        <div class="wave-bars">
+          <span class="bar"></span>
+          <span class="bar"></span>
+          <span class="bar"></span>
+          <span class="bar"></span>
+          <span class="bar"></span>
+          <span class="bar"></span>
+          <span class="bar"></span>
+          <span class="bar"></span>
+          <span class="bar"></span>
+          <span class="bar"></span>
+          <span class="bar"></span>
+          <span class="bar"></span>
+          <span class="bar"></span>
+          <span class="bar"></span>
+          <span class="bar"></span>
+        </div>
+      </div>
+
+      <h1 class="brand">SEON-YUL</h1>
+      <p class="tagline">서울의 관광, 선율과 함께</p>
+    </section>
+
+    <div class="home-indicator" aria-hidden="true"></div>
+  </main>
+
+  <script>
+    const bars = [...document.querySelectorAll(".bar")];
+    const totalDuration = 3000;
+    const flatHeight = 0.15;
+    let startTime = null;
+
+    function drawWave(timestamp) {
+      if (!startTime) startTime = timestamp;
+
+      const elapsed = timestamp - startTime;
+      const progress = Math.min(elapsed / totalDuration, 1);
+      const front = progress * (bars.length + 7) - 2;
+
+      bars.forEach((bar, index) => {
+        const distance = Math.abs(index - front);
+        const envelope = Math.max(0, 1 - distance / 3.2);
+        const ripple = (Math.sin((elapsed * 0.011) - (index * 0.82)) + 1) / 2;
+        const scale = flatHeight + envelope * (0.65 + ripple * 1.05);
+
+        bar.style.transform = `scaleY(${Math.min(scale, 1)})`;
+      });
+
+      if (progress < 1) {
+        requestAnimationFrame(drawWave);
+        return;
+      }
+
+      bars.forEach((bar) => {
+        bar.style.transition = "transform 420ms cubic-bezier(0.22, 1, 0.36, 1)";
+        bar.style.transform = `scaleY(${flatHeight})`;
+      });
+
+      setTimeout(() => {
+        window.location.href = "./login/login.html"; 
+      }, 500); 
+    }
+
+    requestAnimationFrame(drawWave);
+  </script>
+</body>
+</html>

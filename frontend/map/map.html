@@ -1,0 +1,64 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Seon-yul 여행</title>
+  <link rel="stylesheet" href="map.css">
+</head>
+<body>
+    <div class="app-container">
+  <header class="map-header">
+        <h2>지도</h2>
+        <div class="filter-container">
+          <button class="filter-btn active" data-filter="all">전체</button>
+          <button class="filter-btn" data-filter="seonyul">SEON-YUL</button>
+          <button class="filter-btn" data-filter="tour">관광지</button>
+        </div> </header> <main class="map-wrapper">  
+      <div id="kakao-map-container"></div>
+      
+      <div class="floating-search-area">
+        <div class="search-box">
+          <img class="search-icon" src="../images/Search.png"/>
+          <input type="text" id="map-search-input" placeholder="장소, 음악을 검색해보세요...">
+        </div>
+      </div>
+
+    </main>
+
+
+    <nav class="bottom-nav" >
+      <div class="nav-tab clickable-box" id="box-nav-home">
+        <img class="nav-icon" src="../images/Home_stroke.png"/>
+        <span class="nav-text">홈</span>
+      </div>
+
+      <div class="nav-tab clickable-box" id="box-nav-map">
+        <img class="nav-icon" src="../images/map.png"/>
+        <span class="nav-text">지도</span>
+      </div>
+
+      <div class="nav-center">
+        <img src="../images/mainbtn.png">
+      </div>
+
+      <div class="nav-tab clickable-box" id="box-nav-save">
+       <img class="nav-icon" src="../images/Bookmark_light.png"/>
+        <span class="nav-text">저장</span>
+      </div>
+      
+      <div class="nav-tab clickable-box"  id="box-nav-mypage">
+        <img class="nav-icon" src="../images/User_stroke.png"/>
+        <span class="nav-text">마이</span>
+      </div>
+    </nav>
+
+  </div>
+  <link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css" />
+  <script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js"></script>
+  
+  <script src="../js/data.js"></script>
+  <script src="../js/api.js"></script>
+  <script src="map.js"></script>
+</body>
+</html>

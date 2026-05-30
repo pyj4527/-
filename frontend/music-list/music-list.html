@@ -1,0 +1,74 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>서울의 선율 - 경복궁</title>
+  <link rel="stylesheet" href="music-list.css">
+</head>
+<body>
+
+  <div class="app-container">
+    
+    <header class="header">
+      <button class="back-btn">＜</button>
+      <h1 class="header-title">경복궁 <span class="header-sub">in SEON-YUL</span></h1>
+    </header>
+
+    <main class="main-content">
+      
+      <section class="music-section">
+        <h3 class="section-title">MY SEON-YUL</h3>
+        <div class="top-highlight">
+          <div class="music-info-row">
+            <img src="../images/music_ic.png">
+            <div class="music-text-block">
+              <h4 class="music-title uppercase">GYEONGBOKGUNG_STYLE</h4>
+              <p class="music-desc">싸이의 '강남스타일'이 있다면 경복궁엔 '경복궁스타일'이 있습니다. 신나는 음악과 함께 경복궁을 즐겨보세요!</p>
+            </div>
+          </div>
+          <div class="music-meta-row">
+            <span class="user-name">HGD</span>
+            <span class="play-time">1:43</span>
+            <div class="controls">
+              <button class="play-btn">▶</button>
+              <button class="more-btn">⋮</button>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <section class="music-section">
+        <div class="section-divider">
+          <span>People in</span> <span class="gradation">SEON-YUL</span>
+          <div class="divider-line"></div>
+        </div>
+
+        <div class="music-card">
+          <div class="music-info-row">
+            <img src="../images/music_ic.png">
+            <div class="music-text-block">
+              <h4 class="music-title">경복궁의 아침</h4>
+              <p class="music-desc text-short">경복궁의 고즈넉한 분위기를 담은 곡입니다.</p>
+            </div>
+          </div>
+          <div class="music-meta-row">
+            <span class="user-name">kodong</span>
+            <span class="play-time">00:00</span>
+            <div class="controls">
+              <button class="play-btn">▶</button>
+              <button class="more-btn">⋮</button>
+            </div>
+          </div>
+        </div>
+
+        <div id="dynamic-list-container"></div>
+
+      </section>
+    </main>
+
+  </div>
+
+  <script src="music-list.js"></script>
+</body>
+</html>

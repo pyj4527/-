@@ -1,0 +1,91 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Seon-yul 약관동의</title>
+  <link rel="stylesheet" href="terms.css">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+</head>
+<body>
+
+  <div class="app-container">
+    
+    <div class="logo-area">
+      <img src="../images/logo.png" alt="SEON-YUL 로고" class="app-logo">
+    </div>
+
+    <div class="main-content">
+      <div class="terms-container">
+        
+        <div class="all-check-group">
+          <label class="checkbox-labelall">
+            <input type="checkbox" id="check-all">
+            <span class="custom-checkbox"></span>
+            <div class="check-text">
+              <h3>전체 동의하기</h3>
+              <p>위치기반서비스 이용약관(선택), 이벤트·혜택 정보 수신(선택) 동의를 포함합니다.</p>
+            </div>
+          </label>
+        </div>
+
+        <hr class="divider">
+
+        <div class="terms-list">
+          
+          <div class="terms-item">
+            <label class="checkbox-label">
+              <input type="checkbox" id="check-required-1" class="sub-check" data-required="true">
+              <span class="custom-checkbox"></span>
+              <span class="item-text"><span class="required-text">필수</span> SEON-YUL 이용약관</span>
+            </label>
+          </div>
+
+          <div class="terms-item">
+            <label class="checkbox-label">
+              <input type="checkbox" id="check-optional-1" class="sub-check" data-required="false">
+              <span class="custom-checkbox"></span>
+              <span class="item-text"><span class="optional-text">선택</span> 위치기반서비스 이용약관</span>
+            </label>
+          </div>
+
+          <div class="terms-item">
+            <label class="checkbox-label">
+              <input type="checkbox" id="check-optional-2" class="sub-check" data-required="false">
+              <span class="custom-checkbox"></span>
+              <span class="item-text"><span class="optional-text">선택</span> 개인정보 수집 및 이용</span>
+            </label>
+            
+            <div class="sub-item-group">
+              <label class="checkbox-label sub-label">
+                <input type="checkbox" id="check-ad" class="sub-check" data-required="false">
+                <span class="custom-checkbox-sub">✔</span>
+                <span class="sub-item-text">광고성 정보 수신동의</span>
+              </label>
+            </div>
+          </div>
+
+        </div>
+
+        <div class="accordion-section">
+          <div class="accordion-header" id="accordion-toggle">
+            <span>• 개인정보 수집 및 이용 안내</span>
+            <i class="fa-solid fa-chevron-down arrow-icon"></i>
+          </div>
+          <div class="accordion-content" id="accordion-content">
+            <p>여기에 개인정보 수집 목적, 항목, 보유 기간 등 백엔드/기획 단계에서 정의한 상세 약관 텍스트가 들어갑니다.</p>
+          </div>
+        </div>
+
+      </div>
+    </div>
+
+    <div class="bottom-btn-area">
+      <button type="button" class="next-btn clickable-box" id="btn-next" disabled>다음</button>
+    </div>
+
+  </div>
+
+  <script src="terms.js"></script>
+</body>
+</html>

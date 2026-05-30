@@ -1,0 +1,84 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Seoulody - 회원가입</title>
+  <link rel="stylesheet" href="signup.css">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+</head>
+<body>
+  <div class="app-container">
+    <div class="logo-area">
+      <img src="../images/logo.png" alt="Seoulody 로고" class="app-logo">
+    </div>
+
+    <div class="main-content">
+      <p class="page-desc">본인 확인을 위해 이메일 인증을 진행해 주세요.</p>
+
+      <form id="signup-form" novalidate>
+        <div class="form-group-box">
+          <div class="input-row">
+            <div class="input-left">
+              <i class="fa-regular fa-user input-icon"></i>
+              <input type="text" id="user-id" placeholder="아이디" autocomplete="off" required>
+            </div>
+            <button type="button" class="inline-btn" id="btn-check-id">중복확인</button>
+          </div>
+
+          <div class="input-row no-border">
+            <div class="input-left">
+              <i class="fa-solid fa-lock input-icon"></i>
+              <input type="password" id="user-pw" placeholder="비밀번호" required>
+            </div>
+          </div>
+
+          <div class="pw-requirements">
+            <div class="req-item" id="req-length"><span class="check-mark">✓</span> 최소 8자 이상</div>
+            <div class="req-item" id="req-upper"><span class="check-mark">✓</span> 대문자 포함</div>
+            <div class="req-item" id="req-special"><span class="check-mark">✓</span> 특수기호 포함</div>
+          </div>
+
+          <div class="input-row password-confirm-row">
+            <div class="input-left">
+              <i class="fa-regular fa-circle-check input-icon"></i>
+              <input type="password" id="user-pw-confirm" placeholder="비밀번호 확인" required>
+            </div>
+          </div>
+        </div>
+
+        <div class="form-group-box">
+          <div class="input-row">
+            <div class="input-left">
+              <i class="fa-regular fa-user input-icon"></i>
+              <input type="text" id="user-name" placeholder="이름" required>
+            </div>
+          </div>
+
+          <div class="input-row">
+            <div class="input-left">
+              <i class="fa-regular fa-envelope input-icon"></i>
+              <input type="email" id="user-email" placeholder="email" required>
+            </div>
+            <button type="button" class="inline-btn" id="btn-request-email">인증요청</button>
+          </div>
+
+          <div class="input-row no-border">
+            <div class="input-left">
+              <i class="fa-regular fa-circle-check input-icon"></i>
+              <input type="text" id="auth-code" placeholder="인증코드" required>
+            </div>
+            <button type="button" class="inline-btn" id="btn-verify-code">확인</button>
+          </div>
+        </div>
+      </form>
+
+      <div class="bottom-btn-area">
+        <button type="submit" form="signup-form" class="submit-btn clickable-box" id="btn-submit" disabled>회원가입하기</button>
+      </div>
+    </div>
+  </div>
+
+  <script src="signup.js"></script>
+</body>
+</html>
