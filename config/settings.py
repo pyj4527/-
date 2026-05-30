@@ -10,7 +10,6 @@ For the full list of settings and their values, see
 https://docs.djangoproject.com/en/6.0/ref/settings/
 """
 
-import os
 from pathlib import Path
 
 # Build paths inside the project like this: BASE_DIR / 'subdir'.
@@ -26,11 +25,7 @@ SECRET_KEY = 'django-insecure-z7%l6%$y6s7x!fwm*-(cs3j^ss-k+zq0=2q#l1to5+x@zk8-&(
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
 
-ALLOWED_HOSTS = [
-    host.strip()
-    for host in os.environ.get("ALLOWED_HOSTS", "127.0.0.1,localhost,*").split(",")
-    if host.strip()
-]
+ALLOWED_HOSTS = []
 
 
 # Application definition
@@ -113,14 +108,10 @@ AUTH_PASSWORD_VALIDATORS = [
     },
 ]
 
-CORS_ALLOW_ALL_ORIGINS = os.environ.get("CORS_ALLOW_ALL_ORIGINS", "True") == "True"
 CORS_ALLOWED_ORIGINS = [
-    origin.strip()
-    for origin in os.environ.get(
-        "CORS_ALLOWED_ORIGINS",
-        "http://localhost:5173,http://127.0.0.1:5173,http://localhost:3000,https://seoulody.netlify.app",
-    ).split(",")
-    if origin.strip()
+    "http://localhost:5173",
+    "http://127.0.0.1:5173",
+    "http://localhost:3000",
 ]
 
 REST_FRAMEWORK = {
