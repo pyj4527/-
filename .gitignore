@@ -17,7 +17,6 @@ __pycache__/
 staticfiles/
 
 # Local feature test folders
-music/
 place-frontend/
 
 # PyCharm
