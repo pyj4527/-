@@ -1,11 +1,34 @@
 from rest_framework import serializers
 
+from music.models import Track
 from .models import Bookmark, Place
+
+
+class RecommendedTrackSerializer(serializers.ModelSerializer):
+    audioUrl = serializers.CharField(source="audio_url")
+    coverImageUrl = serializers.CharField(source="cover_image_url")
+    youtubeVideoId = serializers.CharField(source="youtube_video_id")
+    youtubeThumbnailUrl = serializers.CharField(source="youtube_thumbnail_url")
+
+    class Meta:
+        model = Track
+        fields = [
+            "id",
+            "title",
+            "artist",
+            "description",
+            "mood",
+            "tags",
+            "audioUrl",
+            "coverImageUrl",
+            "youtubeVideoId",
+            "youtubeThumbnailUrl",
+        ]
 
 
 class PlaceListSerializer(serializers.ModelSerializer):
     nameEn = serializers.CharField(source="name_en")
-    imageUrl = serializers.URLField(source="image_url")
+    imageUrl = serializers.CharField(source="image_url")
     averageRating = serializers.DecimalField(
         source="average_rating",
         max_digits=3,
@@ -14,6 +37,7 @@ class PlaceListSerializer(serializers.ModelSerializer):
     )
     trackCount = serializers.IntegerField(source="track_count")
     isBookmarked = serializers.SerializerMethodField()
+    recommendedTrack = serializers.SerializerMethodField()
 
     class Meta:
         model = Place
@@ -29,6 +53,7 @@ class PlaceListSerializer(serializers.ModelSerializer):
             "averageRating",
             "trackCount",
             "isBookmarked",
+            "recommendedTrack",
         ]
 
     def get_isBookmarked(self, obj):
@@ -36,6 +61,12 @@ class PlaceListSerializer(serializers.ModelSerializer):
         if user_id is None:
             return False
         return obj.bookmarks.filter(user_id=user_id).exists()
+
+    def get_recommendedTrack(self, obj):
+        track = obj.tracks.filter(is_active=True).order_by("id").first()
+        if track is None:
+            return None
+        return RecommendedTrackSerializer(track).data
 
 
 class PlaceDetailSerializer(PlaceListSerializer):
@@ -58,6 +89,7 @@ class PlaceDetailSerializer(PlaceListSerializer):
             "averageRating",
             "trackCount",
             "isBookmarked",
+            "recommendedTrack",
         ]
 
 

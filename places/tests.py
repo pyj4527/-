@@ -3,6 +3,7 @@ from django.contrib.auth.models import User
 from rest_framework import status
 from rest_framework.test import APIClient
 
+from music.models import Track
 from .models import Bookmark, Place
 
 
@@ -28,6 +29,16 @@ class PlaceApiTests(TestCase):
             address="서울특별시 종로구",
             average_rating=4.5,
         )
+        self.track = Track.objects.create(
+            place=self.place,
+            title="Test Track",
+            artist="Test Artist",
+            description="Test track description",
+            mood="calm",
+            tags=["test"],
+            audio_url="audio/test.mp3",
+            cover_image_url="images/covers/test.png",
+        )
 
     def test_map_places_requires_user_id_header(self):
         response = self.client.get("/api/map/places")
@@ -46,8 +57,10 @@ class PlaceApiTests(TestCase):
         self.assertEqual(place_data["name"], "테스트 장소")
         self.assertEqual(place_data["nameEn"], "Test Place")
         self.assertEqual(place_data["district"], "종로구")
-        self.assertEqual(place_data["trackCount"], 0)
+        self.assertEqual(place_data["trackCount"], 1)
         self.assertFalse(place_data["isBookmarked"])
+        self.assertEqual(place_data["recommendedTrack"]["title"], "Test Track")
+        self.assertEqual(place_data["recommendedTrack"]["audioUrl"], "audio/test.mp3")
 
     def test_place_detail_returns_detail_fields(self):
         response = self.client.get(
@@ -59,6 +72,7 @@ class PlaceApiTests(TestCase):
         self.assertEqual(response.data["description"], "테스트 설명")
         self.assertEqual(response.data["openTime"], "상시 개방")
         self.assertEqual(response.data["address"], "서울특별시 종로구")
+        self.assertEqual(response.data["recommendedTrack"]["artist"], "Test Artist")
 
     def test_place_detail_returns_not_found(self):
         response = self.client.get(

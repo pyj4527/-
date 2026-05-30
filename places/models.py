@@ -20,7 +20,7 @@ class Place(models.Model):
 
     @property
     def track_count(self):
-        return 0
+        return self.tracks.filter(is_active=True).count()
 
     def __str__(self):
         return self.name
