@@ -2,14 +2,6 @@ from django.db import models
 
 
 class Track(models.Model):
-    place = models.ForeignKey(
-        "places.Place",
-        on_delete=models.CASCADE,
-        related_name="tracks",
-        null=True,
-        blank=True,
-    )
-    user_id = models.PositiveIntegerField(default=1)
     title = models.CharField(max_length=150)
     artist = models.CharField(max_length=150, blank=True)
 
@@ -18,7 +10,6 @@ class Track(models.Model):
 
     tags = models.JSONField(default=list, blank=True)
 
-    audio = models.FileField(upload_to="tracks/", blank=True)
     audio_url = models.CharField(max_length=500, blank=True)
     cover_image_url = models.CharField(max_length=500, blank=True)
 

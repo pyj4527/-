@@ -15,7 +15,6 @@ __pycache__/
 
 # Django
 staticfiles/
-media/
 
 # Local feature test folders
 place-frontend/
