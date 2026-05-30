@@ -39,8 +39,10 @@ INSTALLED_APPS = [
     'django.contrib.staticfiles',
 
     "rest_framework",
+    "rest_framework.authtoken",
     "corsheaders",
 
+    "accounts",
     "places",
     "music",
 ]
@@ -111,11 +113,18 @@ CORS_ALLOWED_ORIGINS = [
     "http://localhost:3000",
 ]
 
+REST_FRAMEWORK = {
+    "DEFAULT_AUTHENTICATION_CLASSES": [
+        "rest_framework.authentication.TokenAuthentication",
+        "rest_framework.authentication.SessionAuthentication",
+    ],
+}
+
 
 # Internationalization
 # https://docs.djangoproject.com/en/6.0/topics/i18n/
 
-LANGUAGE_CODE = 'en-us'
+LANGUAGE_CODE = 'en-us' # 미국시간..??
 
 TIME_ZONE = 'UTC'
 
