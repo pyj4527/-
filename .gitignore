@@ -16,6 +16,10 @@ __pycache__/
 # Django
 staticfiles/
 
+# Local feature test folders
+music/
+place-frontend/
+
 # PyCharm
 .idea/
 
