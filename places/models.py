@@ -20,7 +20,7 @@ class Place(models.Model):
 
     @property
     def track_count(self):
-        return 0
+        return self.tracks.filter(is_active=True).count()
 
     def __str__(self):
         return self.name
@@ -42,4 +42,3 @@ class Bookmark(models.Model):
 
     def __str__(self):
         return f"{self.user_id} - {self.place.name}"
-
