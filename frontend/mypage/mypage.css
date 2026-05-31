@@ -8,18 +8,20 @@
 body {
   display: flex;
   justify-content: center;
-  align-items: center;
   min-height: 100vh;
-  background-color: #ffffff;
+  background-color: #eeeeee;
 }
 
 .app-container {
   width: 402px;
-  height: 874px;
+  min-width: 402px;
+  min-height: 844px;
   position: relative;
   display: flex;
   flex-direction: column;
   overflow: hidden;
+  background-color: #fbf7fb;
+  box-shadow: 0 12px 28px rgba(35, 31, 46, 0.14);
 }
 
 .page-header {
@@ -130,28 +132,171 @@ body {
   font-size: 13px;
 }
 
-.bottom-nav {
-  position: absolute; 
-  bottom: 0; 
-  width: 402px;
-  height: 92px;
-  left: 0;
-  right: 0;
-  background-color: #FCF8FB;
-  border-top: 1px solid rgba(0, 0, 0, 0.06);
-  display: flex;
-  justify-content: space-around;
-  align-items: center;
-  z-index: 100;
+.language-setting {
+  gap: 16px;
 }
-.nav-tab { display: flex; flex-direction: column; align-items: center; flex: 1; transition: all 0.2s ease; }
-.nav-icon { 
+
+.selected-language {
+  color: #8f88a3;
+  font-size: 14px;
+  font-weight: 600;
+}
+
+.language-sheet {
+  position: fixed;
+  inset: 0;
+  display: flex;
+  align-items: flex-end;
+  justify-content: center;
+  background: rgba(24, 20, 34, 0.28);
+  z-index: 1200;
+}
+
+.language-sheet.hidden {
+  display: none;
+}
+
+.language-panel {
+  width: min(402px, 100vw);
+  padding: 18px 22px 28px;
+  background: #ffffff;
+  border-radius: 18px 18px 0 0;
+  box-shadow: 0 -12px 28px rgba(35, 31, 46, 0.18);
+}
+
+.language-header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  margin-bottom: 10px;
+}
+
+.language-header h3 {
+  color: #1c1c1e;
+  font-size: 18px;
+  font-weight: 700;
+}
+
+.language-close {
+  width: 32px;
+  height: 32px;
+  border: 0;
+  border-radius: 50%;
+  background: #f4f0f8;
+  color: #6f5cff;
+  font-size: 22px;
+  line-height: 1;
+  cursor: pointer;
+}
+
+.language-option {
+  width: 100%;
+  min-height: 48px;
+  display: flex;
+  align-items: center;
+  justify-content: flex-start;
+  border: 0;
+  border-bottom: 1px solid rgba(136, 136, 136, 0.18);
+  background: #ffffff;
+  color: #2b2934;
+  font-size: 16px;
+  font-weight: 600;
+  text-align: left;
+  cursor: pointer;
+}
+
+.language-option:last-child {
+  border-bottom: 0;
+}
+
+.language-option.active {
+  color: #6f5cff;
+}
+
+.bottom-nav {
+  position: fixed;
+  left: 50%;
+  right: auto;
+  bottom: 0;
+  width: 402px;
+  height: 91px;
+  padding: 14px 17px 0;
+  display: grid;
+  grid-template-columns: repeat(5, 1fr);
+  align-items: start;
+  background: #ffffff;
+  box-shadow: 0 -8px 17px rgba(27, 24, 38, 0.18);
+  transform: translateX(-50%);
+  z-index: 1000;
+}
+
+.bottom-nav::after {
+  content: "";
+  position: absolute;
+  left: 149px;
+  right: 149px;
+  bottom: 9px;
+  height: 1px;
+  background: #1e1b2b;
+}
+
+.bottom-nav a {
+  min-width: 0;
+  height: 64px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: flex-start;
+  gap: 7px;
+  color: #b8b5be;
+  font-size: 11px;
+  font-weight: 800;
+  text-align: center;
+  text-decoration: none;
+  border-radius: 14px;
+}
+
+.bottom-nav a.active {
+  color: #6f5cff;
+}
+
+.center-action {
+  color: #1f1b2f;
+}
+
+.nav-icon {
   height: 24px;
   width: 24px;
-  margin-bottom: 3px; }
-.nav-text { font-size: 12px; color: #9ca3af; font-weight: 600; }
+  display: grid;
+  place-items: center;
+}
 
-.nav-center { display: flex; flex-direction: column; align-items: center; position: relative; top: -14px; flex: 1; }
+.nav-icon img {
+  max-width: 24px;
+  max-height: 24px;
+  object-fit: contain;
+  filter: grayscale(1);
+  opacity: 0.45;
+}
+
+.bottom-nav a.active .nav-icon img {
+  filter: brightness(0) saturate(100%) invert(43%) sepia(90%) saturate(2054%) hue-rotate(229deg) brightness(99%) contrast(104%);
+  opacity: 1;
+}
+
+.center-action {
+  position: relative;
+  margin-top: -29px;
+  gap: 6px;
+}
+
+.center-action > img {
+  width: 56px;
+  height: 56px;
+  display: block;
+  border-radius: 50%;
+  filter: drop-shadow(0 5px 10px rgba(104, 83, 216, 0.34));
+}
 .home-indicator {
   width: 140px;
   height: 5px;
@@ -163,8 +308,6 @@ body {
   transform: translateX(-50%);
   z-index: 1000;
 }
-.nav-tab { display: flex; flex-direction: column; align-items: center; flex: 1; transition: all 0.2s ease; }
-
 .clickable-box { cursor: pointer; }
 
 .clickable-box:active {

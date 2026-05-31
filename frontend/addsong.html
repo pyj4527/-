@@ -16,11 +16,11 @@
         </header>
 
         <section class="addsong-content">
-            <a class="back-link" href="save.html" aria-label="이전 화면으로 이동">
+            <a class="back-link" href="player.html" aria-label="이전 화면으로 이동">
                 <span aria-hidden="true">
-                    <img src="images\icon\Left 2.png" alt="뒤로가기 아이콘">
+                    <img src="images/icon/Left 2.png" alt="">
                 </span>
-                노래 추가하기
+                <span id="formTitle">노래 추가하기</span>
             </a>
 
             <div class="place-meta">
@@ -30,15 +30,20 @@
             </div>
 
             <form class="song-form">
+                <label class="title-field">
+                    <input id="songTitleInput" type="text" aria-label="노래 제목" placeholder="노래를 추가해주세요">
+                </label>
+
                 <label class="file-field">
                     <span id="fileNameText">파일을 올려주세요</span>
                     <input id="songFileInput" type="file" accept="audio/*">
                 </label>
+                <button id="deleteSongButton" class="delete-song-button" type="button" hidden>삭제</button>
                 <button id="uploadButton" class="upload-button" type="button">파일 업로드</button>
 
                 <label class="description-field">
                     <span>설명을 작성해주세요</span>
-                    <textarea aria-label="노래 설명"></textarea>
+                    <textarea id="songDescriptionInput" aria-label="노래 설명"></textarea>
                 </label>
             </form>
         </section>

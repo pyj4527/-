@@ -97,7 +97,13 @@
   ];
 
   function getPlaceById(id) {
-    return places.find((place) => place.id === id) || places[0];
+    const aliases = {
+      1: "gyeongbokgung",
+      2: "namsan",
+      3: "cheonggyecheon",
+    };
+    const normalizedId = aliases[id] || id;
+    return places.find((place) => place.id === normalizedId) || places[0];
   }
 
   function getPlaceIdFromUrl(defaultId = places[0].id) {

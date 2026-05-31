@@ -78,13 +78,25 @@ document.addEventListener("DOMContentLoaded", async () => {
 
   renderPlace();
 
+  const savedSong = JSON.parse(localStorage.getItem(`seonyulSong:${place.id}`) || "null");
+  const belongsToCurrentPlace = !savedSong?.placeId || savedSong.placeId === place.id;
+  const looksLikeAnotherPlaceDefault = data.places.some((item) => {
+    return item.id !== place.id && savedSong?.title === `${item.nameEn}_STYLE`;
+  });
+  const legacySongName = localStorage.getItem(`seonyulSongName:${place.id}`);
+  const legacyLooksLikeAnotherPlaceDefault = data.places.some((item) => {
+    return item.id !== place.id && legacySongName === `${item.nameEn}_STYLE`;
+  });
   const savedSongName =
-    localStorage.getItem(`seonyulSongName:${place.id}`) ||
-    localStorage.getItem("seonyulSongName");
+    (belongsToCurrentPlace && !looksLikeAnotherPlaceDefault ? savedSong?.title : "") ||
+    (!legacyLooksLikeAnotherPlaceDefault ? legacySongName : "");
 
   if (mySeonyulSong && savedSongName) {
     mySeonyulSong.textContent = savedSongName;
     mySeonyulSong.classList.add("has-song");
+  } else if (mySeonyulSong) {
+    mySeonyulSong.textContent = "파일을 올려주세요";
+    mySeonyulSong.classList.remove("has-song");
   }
 
   backButton?.addEventListener("click", function () {
@@ -131,6 +143,10 @@ document.addEventListener("DOMContentLoaded", async () => {
   });
 
   addSongButton?.addEventListener("click", function () {
+    location.href = `addsong.html?placeId=${encodeURIComponent(place.id)}`;
+  });
+
+  mySeonyulSong?.addEventListener("click", function () {
     location.href = `addsong.html?placeId=${encodeURIComponent(place.id)}`;
   });
 

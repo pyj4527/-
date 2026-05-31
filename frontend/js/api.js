@@ -1,16 +1,26 @@
 (function () {
   const API_BASE_URL =
-    window.SEOULODY_API_BASE_URL || `${window.location.origin}/api`;
+    window.SEOULODY_API_BASE_URL ||
+    (["5500", "5501"].includes(window.location.port)
+      ? "http://localhost:8000/api"
+      : `${window.location.origin}/api`);
 
   function getUserId() {
     return localStorage.getItem("userId") || "1";
   }
 
   function getHeaders() {
-    return {
+    const headers = {
       "Content-Type": "application/json",
       "X-User-Id": getUserId(),
     };
+    const authHeader = localStorage.getItem("authHeader");
+
+    if (authHeader) {
+      headers.Authorization = authHeader;
+    }
+
+    return headers;
   }
 
   function toFrontendPlace(place) {

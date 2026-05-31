@@ -304,10 +304,11 @@ a {
 }
 
 .bottom-nav {
-    position: absolute;
-    left: 0;
-    right: 0;
+    position: fixed;
+    left: 50%;
+    right: auto;
     bottom: 0;
+    width: 402px;
     height: 91px;
     padding: 14px 17px 0;
     display: grid;
@@ -315,6 +316,8 @@ a {
     align-items: start;
     background: #ffffff;
     box-shadow: 0 -8px 17px rgba(27, 24, 38, 0.18);
+    transform: translateX(-50%);
+    z-index: 1000;
 }
 
 .bottom-nav::after {
@@ -339,9 +342,13 @@ a {
     font-size: 11px;
     font-weight: 800;
     text-align: center;
+    border-radius: 14px;
 }
 
-.bottom-nav a.active,
+.bottom-nav a.active {
+    color: #6f5cff;
+}
+
 .center-action {
     color: #1f1b2f;
 }
@@ -357,6 +364,13 @@ a {
     max-width: 24px;
     max-height: 24px;
     object-fit: contain;
+    filter: grayscale(1);
+    opacity: 0.45;
+}
+
+.bottom-nav a.active .nav-icon img {
+    filter: brightness(0) saturate(100%) invert(43%) sepia(90%) saturate(2054%) hue-rotate(229deg) brightness(99%) contrast(104%);
+    opacity: 1;
 }
 
 .center-action {
@@ -383,6 +397,11 @@ a {
         width: 402px;
         min-width: 402px;
         box-shadow: none;
+    }
+
+    .bottom-nav {
+        left: 0;
+        transform: none;
     }
 }
 

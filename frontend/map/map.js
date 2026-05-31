@@ -20,7 +20,7 @@ document.addEventListener("DOMContentLoaded", async () => {
   const previewCard = document.createElement("article");
   previewCard.className = "map-place-preview";
   previewCard.hidden = true;
-  mapContainer?.parentElement?.appendChild(previewCard);
+  document.querySelector(".app-container")?.appendChild(previewCard);
 
   function getLocalBookmarks() {
     return JSON.parse(localStorage.getItem("seoulodyBookmarks") || "[]");

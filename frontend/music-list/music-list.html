@@ -7,32 +7,37 @@
   <link rel="stylesheet" href="music-list.css">
 </head>
 <body>
-
   <div class="app-container">
-    
     <header class="header">
-      <button class="back-btn">＜</button>
-      <h1 class="header-title">경복궁 <span class="header-sub">in SEON-YUL</span></h1>
+      <button class="back-btn" type="button" aria-label="이전 화면">
+        <img src="../images/icon/Left 2.png" alt="">
+      </button>
+      <h1 class="header-title"><span id="placeNameText">경복궁</span> <span class="header-sub">in SEON-YUL</span></h1>
     </header>
 
     <main class="main-content">
-      
       <section class="music-section">
         <h3 class="section-title">MY SEON-YUL</h3>
-        <div class="top-highlight">
+        <div id="mySongCard" class="top-highlight">
           <div class="music-info-row">
-            <img src="../images/music_ic.png">
+            <img class="music-icon outline" src="../images/icon/Component 3.png" alt="">
             <div class="music-text-block">
-              <h4 class="music-title uppercase">GYEONGBOKGUNG_STYLE</h4>
-              <p class="music-desc">싸이의 '강남스타일'이 있다면 경복궁엔 '경복궁스타일'이 있습니다. 신나는 음악과 함께 경복궁을 즐겨보세요!</p>
+              <h4 class="music-title uppercase" id="mySongTitle">파일을 올려주세요</h4>
+              <p class="music-desc" id="mySongDesc">노래 추가하기 화면에서 나만의 SEON-YUL을 등록해보세요.</p>
             </div>
           </div>
           <div class="music-meta-row">
-            <span class="user-name">HGD</span>
-            <span class="play-time">1:43</span>
+            <span class="user-name" id="mySongUser">HGD</span>
+            <span class="play-time" id="mySongTime">00:00</span>
             <div class="controls">
-              <button class="play-btn">▶</button>
-              <button class="more-btn">⋮</button>
+              <button class="play-btn" type="button" aria-label="재생">▶</button>
+              <div class="more-container">
+                <button class="more-btn" type="button" aria-label="더보기">⋮</button>
+                <div class="dropdown-menu hidden">
+                  <button class="edit-btn" type="button">수정</button>
+                  <button class="delete-btn" type="button">삭제</button>
+                </div>
+              </div>
             </div>
           </div>
         </div>
@@ -46,22 +51,22 @@
 
         <div class="music-card">
           <div class="music-info-row">
-            <img src="../images/music_ic.png">
+            <img class="music-icon outline" src="../images/icon/Component 3.png" alt="">
             <div class="music-text-block">
-              <h4 class="music-title">경복궁의 아침</h4>
-              <p class="music-desc text-short">경복궁의 고즈넉한 분위기를 담은 곡입니다.</p>
+              <h4 id="peoplePrimaryTitle" class="music-title">SEON-YUL</h4>
+              <p id="peoplePrimaryDesc" class="music-desc text-short">장소에 어울리는 선율을 불러오는 중입니다.</p>
             </div>
           </div>
           <div class="music-meta-row">
-            <span class="user-name">kodong</span>
-            <span class="play-time">00:00</span>
+            <span id="peoplePrimaryUser" class="user-name">kodong</span>
+            <span id="peoplePrimaryTime" class="play-time">00:00</span>
             <div class="controls">
-              <button class="play-btn">▶</button>
+              <button class="play-btn" type="button" aria-label="재생">▶</button>
               <div class="more-container">
-                <button class="more-btn">⋮</button>
+                <button class="more-btn" type="button" aria-label="더보기">⋮</button>
                 <div class="dropdown-menu hidden">
-                    <button class="edit-btn">수정</button>
-                    <button class="delete-btn">삭제</button>
+                  <button class="edit-btn" type="button">수정</button>
+                  <button class="delete-btn" type="button">삭제</button>
                 </div>
               </div>
             </div>
@@ -69,12 +74,11 @@
         </div>
 
         <div id="dynamic-list-container"></div>
-
       </section>
     </main>
-
   </div>
 
+  <script src="../js/data.js"></script>
   <script src="music-list.js"></script>
 </body>
 </html>

@@ -7,7 +7,7 @@ body {
     margin: 0;
     display: flex;
     justify-content: center;
-    background: #f2f2f2;
+    background: #eeeeee;
     color: #191627;
     font-family: -apple-system, BlinkMacSystemFont, "Pretendard", "Noto Sans KR", "Segoe UI", sans-serif;
 }
@@ -35,6 +35,8 @@ button {
     min-width: 402px;
     min-height: 844px;
     overflow: hidden;
+    display: flex;
+    flex-direction: column;
     background: #fffcff;
     box-shadow: 0 12px 30px rgba(35, 31, 46, 0.10);
 }
@@ -115,27 +117,38 @@ button {
 }
 
 .addsong-content {
-    min-height: 690px;
-    padding: 18px 22px 0;
+    flex: 1;
+    min-height: 0;
+    padding: 18px 22px 128px;
     border-bottom: 1px solid #d9d5dd;
     background: #fffcff;
     box-shadow: 0 9px 12px -7px rgba(28, 24, 36, 0.34);
 }
 
 .back-link {
-    display: inline-flex;
+    display: flex;
     align-items: center;
     gap: 7px;
+    width: fit-content;
     margin-bottom: 28px;
     color: #242131;
-    font-size: 12px;
+    font-size: 15px;
     font-weight: 700;
     letter-spacing: -0.01em;
+    white-space: nowrap;
 }
 
 .back-link span {
-    width: 14px;
-    height: 14px;
+    width: auto;
+    min-width: 0;
+    height: 18px;
+    display: inline-flex;
+    align-items: center;
+}
+
+.back-link span[aria-hidden="true"] {
+    width: 18px;
+    min-width: 18px;
     display: grid;
     place-items: center;
 }
@@ -154,14 +167,14 @@ button {
 .place-meta p {
     margin: 0 0 4px;
     color: #232030;
-    font-size: 12px;
+    font-size: 14px;
     font-weight: 600;
     letter-spacing: -0.02em;
 }
 
 .place-meta strong {
     color: #6c5be8;
-    font-weight: 900;
+    font-weight: 700;
 }
 
 .place-meta .rule {
@@ -175,7 +188,7 @@ button {
 
 .place-meta h1 {
     margin: 0;
-    font-size: 22px;
+    font-size: 24px;
     line-height: 1;
     font-weight: 900;
     letter-spacing: -0.03em;
@@ -184,8 +197,8 @@ button {
 .place-meta h1 span {
     margin-left: 6px;
     color: #89858f;
-    font-size: 12px;
-    font-weight: 800;
+    font-size: 14px;
+    font-weight: 600;
     letter-spacing: -0.02em;
 }
 
@@ -193,6 +206,7 @@ button {
     position: relative;
 }
 
+.title-field,
 .file-field,
 .description-field {
     display: block;
@@ -203,15 +217,56 @@ button {
     box-shadow: inset 0 0 0 1px rgba(255, 255, 255, 0.5);
 }
 
+.title-field {
+    height: 42px;
+    margin-bottom: 10px;
+    padding: 0;
+}
+
+.title-field[hidden] {
+    display: none;
+}
+
+.title-field input {
+    width: 100%;
+    height: 100%;
+    padding: 0 12px;
+    border: 0;
+    outline: 0;
+    background: transparent;
+    color: #705af4;
+    font-size: 15px;
+    font-weight: 700;
+    text-transform: uppercase;
+}
+
+.title-field input::placeholder {
+    color: #705af4;
+    opacity: 1;
+    text-transform: none;
+}
+
 .file-field {
     height: 46px;
     padding: 14px 20px;
 }
 
+.file-field[hidden] {
+    display: none;
+}
+
+.song-form:not(.editing) .file-field {
+    height: 0;
+    margin: 0;
+    padding: 0;
+    border: 0;
+    overflow: hidden;
+}
+
 .file-field span,
 .description-field span {
     color: #8e8995;
-    font-size: 12px;
+    font-size: 14px;
     font-weight: 700;
     letter-spacing: -0.02em;
 }
@@ -224,25 +279,60 @@ button {
     pointer-events: none;
 }
 
+.delete-song-button,
 .upload-button {
     position: absolute;
     top: 60px;
-    right: 0;
-    width: 82px;
-    height: 39px;
-    border-radius: 19px;
-    background: #8d8a90;
-    color: #ffffff;
-    font-size: 12px;
+    height: 40px;
+    border-radius: 999px;
+    font-size: 14px;
     font-weight: 900;
     letter-spacing: -0.02em;
-    box-shadow: 0 3px 7px rgba(69, 65, 74, 0.18);
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    white-space: nowrap;
+    line-height: 1;
+}
+
+.delete-song-button {
+    right: 92px;
+    width: 55px;
+    border: 1px solid #8d8a90;
+    background: #ffffff;
+    color: #f04b4b;
+}
+
+.delete-song-button[hidden] {
+    display: none;
+}
+
+.upload-button {
+    right: 0;
+    width: 104px;
+    background: linear-gradient(135deg, #8d8a90 0%, #77747d 100%);
+    color: #ffffff;
+    box-shadow: 0 5px 12px rgba(69, 65, 74, 0.22);
+}
+
+.song-form.editing .delete-song-button,
+.song-form.editing .upload-button {
+    top: 70px;
+}
+
+.song-form.editing .delete-song-button {
+    right: 116px;
 }
 
 .description-field {
     height: 113px;
-    margin-top: 68px;
+    margin-top: 116px;
     padding: 16px 20px;
+}
+
+.song-form.editing .description-field {
+    height: 122px;
+    margin-top: 68px;
 }
 
 .description-field textarea {
@@ -255,7 +345,7 @@ button {
     outline: 0;
     background: transparent;
     color: #171426;
-    font-size: 13px;
+    font-size: 14px;
     line-height: 1.45;
 }
 
@@ -276,7 +366,7 @@ button {
     border-radius: 11px;
     background: #6d5bea;
     color: #ffffff;
-    font-size: 13px;
+    font-size: 15px;
     font-weight: 900;
     letter-spacing: -0.02em;
     box-shadow: 0 5px 12px rgba(109, 91, 234, 0.24);
